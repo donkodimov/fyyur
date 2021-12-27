@@ -7,7 +7,6 @@ from flask import Flask
 #----------------------------------------------------------------------------#
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres@localhost:5432/fyyur_dev'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 moment = Moment(app)
 app.config.from_object('config')
