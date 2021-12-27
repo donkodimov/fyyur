@@ -110,6 +110,12 @@ def show_venue(venue_id):
 
     try:
         venue = Venue.query.get(venue_id)
+        shows = (
+            db.session.query(Show)
+            .join(Venue, Venue.id == Show.venue_id)
+            .filter(Venue.id == venue_id)
+            .all()
+        )
         venue.upcoming_shows = [
             {
                 "artist_id": x.artist_id,
@@ -117,7 +123,7 @@ def show_venue(venue_id):
                 "artist_image_link": x.artist.image_link,
                 "start_time": x.start_time,
             }
-            for x in venue.shows
+            for x in shows
             if x.start_time > datetime.now()
         ]
 
@@ -129,7 +135,7 @@ def show_venue(venue_id):
                 "artist_image_link": x.artist.image_link,
                 "start_time": x.start_time,
             }
-            for x in venue.shows
+            for x in shows
             if x.start_time < datetime.now()
         ]
         venue.past_shows_count = len(venue.past_shows)
@@ -230,6 +236,13 @@ def show_artist(artist_id):
 
     try:
         artist = Artist.query.get(artist_id)
+        shows = (
+            db.session.query(Show)
+            .join(Artist, Artist.id == Show.artist_id)
+            .filter(Artist.id == artist_id)
+            .all()
+        )
+
         artist.upcoming_shows = [
             {
                 "venue_id": x.venue_id,
@@ -237,7 +250,7 @@ def show_artist(artist_id):
                 "venue_image_link": x.venue.image_link,
                 "start_time": x.start_time,
             }
-            for x in artist.shows
+            for x in shows
             if x.start_time > datetime.now()
         ]
         artist.upcoming_shows_count = len(artist.upcoming_shows)
@@ -248,7 +261,7 @@ def show_artist(artist_id):
                 "venue_image_link": x.venue.image_link,
                 "start_time": x.start_time,
             }
-            for x in artist.shows
+            for x in shows
             if x.start_time < datetime.now()
         ]
         artist.past_shows_count = len(artist.past_shows)
@@ -256,6 +269,7 @@ def show_artist(artist_id):
     except:
         flash("Artist does not exist.")
         return render_template("pages/home.html")
+
 
 @app.route("/artists/<artist_id>", methods=["DELETE"])
 def delete_artist(artist_id):
@@ -349,7 +363,6 @@ def edit_venue_submission(venue_id):
         db.session.close()
         flash("Venue " + form.name.data + " was successfully updated!")
         return redirect(url_for("show_venue", venue_id=venue_id))
-
 
 
 #  Create Artist
