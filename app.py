@@ -7,7 +7,15 @@ from re import A
 import sys
 import dateutil.parser
 import babel
-from flask import Flask, render_template, request, Response, flash, redirect, url_for
+from flask import (
+    Flask,
+    render_template, 
+    request, 
+    Response, 
+    flash, 
+    redirect, 
+    url_for
+)
 import logging
 from logging import Formatter, FileHandler
 from flask.json import jsonify
