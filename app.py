@@ -166,25 +166,26 @@ def create_venue_form():
 @app.route("/venues/create", methods=["POST"])
 def create_venue_submission():
 
-    form_input = request.form
+    form = VenueForm(request.form)    
     try:
 
         venue = Venue()
-        form = VenueForm(request.form, obj=venue)
         form.populate_obj(venue)
         db.session.add(venue)
         db.session.commit()
-        flash("Venue " + request.form["name"] + " was successfully listed!")
-        return render_template("pages/home.html")
-    except:
+        flash("Venue " + form.name.data + " was successfully listed!")
+    except ValueError as e:
+        print(e)
         db.session.rollback()
         flash(
-            "An error occurred. Venue " + form_input["name"] + " could not be listed."
+            "An error occurred. Venue " + form.name.data + " could not be listed."
         )
         print(sys.exc_info())
         return render_template("errors/500.html")
     finally:
         db.session.close()
+    
+    return render_template("pages/home.html")
 
 
 @app.route("/venues/<venue_id>", methods=["DELETE"])
