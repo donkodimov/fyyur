@@ -1,1 +1,238 @@
 
+2022-02-24 18:25:36,791 INFO: errors [in app.py:487]
+2022-02-24 18:26:43,725 INFO: errors [in app.py:487]
+2022-02-24 18:26:55,956 INFO: errors [in app.py:487]
+2022-02-24 18:26:59,380 ERROR: Exception on / [GET] [in /Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/flask/app.py:1457]
+Traceback (most recent call last):
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3250, in _wrap_pool_connect
+    return fn()
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 868, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 476, in checkout
+    rec = pool._do_get()
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/pool/impl.py", line 146, in _do_get
+    self._dec_overflow()
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/pool/impl.py", line 143, in _do_get
+    return self._create_connection()
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 256, in _create_connection
+    return _ConnectionRecord(self)
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 371, in __init__
+    self.__connect()
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 666, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 661, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/engine/create.py", line 590, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 597, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: connection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "app.py", line 67, in index
+    venues = Venue.query.order_by(Venue.id.desc()).limit(10).all()
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2759, in all
+    return self._iter().all()
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2894, in _iter
+    result = self.session.execute(
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1691, in execute
+    conn = self._connection_for_bind(bind)
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1532, in _connection_for_bind
+    return self._transaction._connection_for_bind(
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 747, in _connection_for_bind
+    conn = bind.connect()
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3204, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3283, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3253, in _wrap_pool_connect
+    Connection._handle_dbapi_exception_noconnection(
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2100, in _handle_dbapi_exception_noconnection
+    util.raise_(
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3250, in _wrap_pool_connect
+    return fn()
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 868, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 476, in checkout
+    rec = pool._do_get()
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/pool/impl.py", line 146, in _do_get
+    self._dec_overflow()
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/pool/impl.py", line 143, in _do_get
+    return self._create_connection()
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 256, in _create_connection
+    return _ConnectionRecord(self)
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 371, in __init__
+    self.__connect()
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 666, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 661, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/engine/create.py", line 590, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 597, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) connection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-02-24 18:27:01,880 ERROR: Exception on /venues [GET] [in /Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/flask/app.py:1457]
+Traceback (most recent call last):
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3250, in _wrap_pool_connect
+    return fn()
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 868, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 476, in checkout
+    rec = pool._do_get()
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/pool/impl.py", line 146, in _do_get
+    self._dec_overflow()
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/pool/impl.py", line 143, in _do_get
+    return self._create_connection()
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 256, in _create_connection
+    return _ConnectionRecord(self)
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 371, in __init__
+    self.__connect()
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 666, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 661, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/engine/create.py", line 590, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 597, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: connection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/flask/app.py", line 2073, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/flask/app.py", line 1518, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/flask/app.py", line 1516, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/flask/app.py", line 1502, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "app.py", line 80, in venues
+    areas_query = Venue.query.distinct(Venue.city, Venue.state).all()
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2759, in all
+    return self._iter().all()
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2894, in _iter
+    result = self.session.execute(
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1691, in execute
+    conn = self._connection_for_bind(bind)
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1532, in _connection_for_bind
+    return self._transaction._connection_for_bind(
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 747, in _connection_for_bind
+    conn = bind.connect()
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3204, in connect
+    return self._connection_cls(self, close_with_result=close_with_result)
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 96, in __init__
+    else engine.raw_connection()
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3283, in raw_connection
+    return self._wrap_pool_connect(self.pool.connect, _connection)
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3253, in _wrap_pool_connect
+    Connection._handle_dbapi_exception_noconnection(
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 2100, in _handle_dbapi_exception_noconnection
+    util.raise_(
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 3250, in _wrap_pool_connect
+    return fn()
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 310, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 868, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 476, in checkout
+    rec = pool._do_get()
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/pool/impl.py", line 146, in _do_get
+    self._dec_overflow()
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/pool/impl.py", line 143, in _do_get
+    return self._create_connection()
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 256, in _create_connection
+    return _ConnectionRecord(self)
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 371, in __init__
+    self.__connect()
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 666, in __connect
+    pool.logger.debug("Error on connect(): %s", e)
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 207, in raise_
+    raise exception
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/pool/base.py", line 661, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/engine/create.py", line 590, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 597, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/Users/toni/coding/fyyur/venv/lib/python3.8/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) connection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
