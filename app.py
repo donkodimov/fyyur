@@ -23,13 +23,18 @@ from flask_wtf import Form
 from forms import *
 from datetime import datetime
 import models
-from models import Venue, Show, Artist
+from models import Venue, Show, Artist, setup_db
 
 # ----------------------------------------------------------------------------#
 # App Config.
 # ----------------------------------------------------------------------------#
-app = models.app
-db = models.db
+# app = models.app
+# db = models.db
+
+app = Flask(__name__, instance_relative_config=True)
+setup_db(app)
+
+
 
 # ----------------------------------------------------------------------------#
 # Filters.
