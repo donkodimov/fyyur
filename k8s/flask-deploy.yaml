@@ -27,8 +27,9 @@ spec:
                 secretKeyRef:
                   name: flaskapi-secrets
                   key: POSTGRES_PASSWORD
-            - name: POSTGRES_DB
-              value: fyyur_dev
+          envFrom:
+          - configMapRef:
+              name: flaskapi-configmap
 
 ---
 apiVersion: v1
