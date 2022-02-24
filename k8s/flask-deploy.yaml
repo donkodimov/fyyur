@@ -27,9 +27,30 @@ spec:
                 secretKeyRef:
                   name: flaskapi-secrets
                   key: POSTGRES_PASSWORD
-          envFrom:
-          - configMapRef:
-              name: flaskapi-configmap
+            
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: flaskapi-configmap
+                  key: POSTGRES_USER
+
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: flaskapi-configmap
+                  key: POSTGRES_DB
+
+            - name: POSTGRES_SERVER
+              valueFrom:
+                configMapKeyRef:
+                  name: flaskapi-configmap
+                  key: POSTGRES_SERVER
+
+            - name: POSTGRES_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: flaskapi-configmap
+                  key: POSTGRES_PORT
 
 ---
 apiVersion: v1
