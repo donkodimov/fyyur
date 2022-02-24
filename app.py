@@ -23,7 +23,7 @@ from flask_wtf import Form
 from forms import *
 from datetime import datetime
 import models
-from models import Venue, Show, Artist, setup_db
+from models import Venue, Show, Artist, setup_db, db
 
 # ----------------------------------------------------------------------------#
 # App Config.
