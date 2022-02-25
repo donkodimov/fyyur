@@ -19,6 +19,8 @@ spec:
         - name: flaskapi
           image: flask-fyyur
           imagePullPolicy: Never
+          command: ["/bin/sh"]
+          args: ["-c", "chmod u+x ./entrypoint.sh; ./entrypoint.sh"]
           ports:
             - containerPort: 5000
           env:
