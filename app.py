@@ -70,6 +70,13 @@ def index():
     return render_template("pages/home.html", venues=venues, artists=artists)
 
 
+# Healt check route
+# -----------------------------------------------------------------
+
+@app.route('/healthz')
+def return_ok():
+    return 'Ok!', 200
+
 #  Venues
 #  ----------------------------------------------------------------
 
