@@ -19,8 +19,6 @@ spec:
       - name: postgres
         image: postgres
         imagePullPolicy: Never
-        command: ["/bin/sh"]
-        args: ["-c", "chmod u+x ./entrypoint.sh; ./entrypoint.sh"]
         env:
         - name: POSTGRES_PASSWORD
           valueFrom:
