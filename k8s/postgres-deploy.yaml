@@ -25,6 +25,11 @@ spec:
             secretKeyRef:
               name: flaskapi-secrets
               key: POSTGRES_PASSWORD
+         - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: flaskapi-configmap
+                  key: POSTGRES_DB
         ports:
         - containerPort: 5432
           name: db-container
