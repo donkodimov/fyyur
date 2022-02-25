@@ -24,19 +24,19 @@ spec:
           ports:
             - containerPort: 5000
           
-        readinessProbe:
-          httpGet:
-            path: /healthz
-            port: 5000
-          initialDelaySeconds: 10
-          periodSeconds: 10
-        
-        livenessProbe:
-          httpGet:
-            path: /healthz
-            port: 5000
-          initialDelaySeconds: 10
-          periodSeconds: 60
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 5000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 5000
+            initialDelaySeconds: 10
+            periodSeconds: 60
 
           env:
             - name: POSTGRES_PASSWORD
