@@ -20,19 +20,50 @@ spec:
         image: postgres
         imagePullPolicy: Never
         env:
+        
         - name: POSTGRES_PASSWORD
           valueFrom:
             secretKeyRef:
               name: flaskapi-secrets
               key: POSTGRES_PASSWORD
+        
         - name: POSTGRES_DB
           valueFrom:
             configMapKeyRef:
               name: flaskapi-configmap
               key: POSTGRES_DB
+        
+        # Required for pg_isready in the health probes.
+        - name: PGUSER
+          value: "postgres"
+
+        - name: POD_IP
+          valueFrom: { fieldRef: { fieldPath: status.podIP } }
+
         ports:
         - containerPort: 5432
           name: db-container
+
+        livenessProbe:
+          exec:
+            command:
+            - sh
+            - -c
+            - exec pg_isready --host $POD_IP
+          initialDelaySeconds: 60
+          timeoutSeconds: 5
+          failureThreshold: 6
+        
+        readinessProbe:
+          exec:
+            command:
+            - sh
+            - -c
+            - exec pg_isready --host $POD_IP
+          initialDelaySeconds: 5
+          timeoutSeconds: 3
+          periodSeconds: 5
+
         volumeMounts:
           - name: postgres-persistent-storage
             mountPath: /var/lib/postgresql/data
