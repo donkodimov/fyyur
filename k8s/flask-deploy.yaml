@@ -20,12 +20,46 @@ spec:
       labels:
         app: flaskapi
     spec:
+      initContainers:
+        - name: init-upgrade
+          image: flask-fyyur
+          imagePullPolicy: Never
+
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: flaskapi-secrets
+                  key: POSTGRES_PASSWORD
+            
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: flaskapi-configmap
+                  key: POSTGRES_USER
+
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: flaskapi-configmap
+                  key: POSTGRES_DB
+
+            - name: POSTGRES_SERVER
+              valueFrom:
+                configMapKeyRef:
+                  name: flaskapi-configmap
+                  key: POSTGRES_SERVER
+
+            - name: POSTGRES_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: flaskapi-configmap
+                  key: POSTGRES_PORT
+
       containers:
         - name: flaskapi
           image: flask-fyyur
           imagePullPolicy: Never
-          command: ["/bin/sh"]
-          args: ["-c", "chmod u+x ./entrypoint.sh; ./entrypoint.sh"]
           ports:
             - containerPort: 5000
           
