@@ -24,6 +24,7 @@ spec:
         - name: init-upgrade
           image: flask-fyyur
           imagePullPolicy: Never
+          command: ["/bin/sh", "-c", "flask db upgrade"]
 
           env:
             - name: POSTGRES_PASSWORD
